@@ -1,0 +1,6 @@
+node_modules/
+data/
+_backup-before-excel-sync/
+_ui-backup-original/
+*.log
+.env

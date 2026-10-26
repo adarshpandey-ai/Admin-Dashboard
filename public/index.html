@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#199d67">
+<title>Admin MIS</title>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" type="image/png" href="/img/mark.png">
+</head>
+<body>
+<div id="login" class="login-wrap" hidden>
+  <div class="login-art" aria-hidden="true">
+    <img class="art-tree" src="/img/mark-white.png" alt=""><div class="login-art-in">
+      <img class="art-logo" src="/img/logo-white.png" alt="Perfact">
+      <h2>Admin MIS</h2><p class="art-tag">Asset register, history and QR labels for Perfact Group</p>
+      
+      <ul>
+        <li><span class="feat-ic ic-slot" data-ic="qr"></span><span><b>QR code on every item</b><br>Scan a label to open its record instantly</span></li>
+        <li><span class="feat-ic ic-slot" data-ic="clock"></span><span><b>Complete history</b><br>Dated entries with PDFs and photos</span></li>
+        <li><span class="feat-ic ic-slot" data-ic="bell"></span><span><b>Due-date alerts</b><br>Warranty, service and licence reminders</span></li>
+        <li><span class="feat-ic ic-slot" data-ic="download"></span><span><b>One-click Excel</b><br>Download any category or everything</span></li>
+      </ul>
+    </div>
+    <svg class="art-wave" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 110 C 260 40, 520 150, 820 90 S 1100 40, 1200 70 L1200 160 L0 160 Z" fill="rgba(255,255,255,.10)"/><path d="M0 135 C 300 80, 560 165, 860 120 S 1120 90, 1200 105 L1200 160 L0 160 Z" fill="rgba(255,255,255,.14)"/></svg>
+  </div>
+  <form id="login-form" class="login-card" autocomplete="on">
+    <img class="login-logo" src="/img/logo.png" alt="Perfact">
+    <h1 id="login-org">Welcome back</h1>
+    <p class="muted">Sign in with your MIS username and password.</p>
+    <label class="field"><span>Username</span><div class="inp-ic"><span class="ic-slot" data-ic="user"></span><input name="username" autocomplete="username" required autofocus placeholder="Enter your username"></div></label>
+    <label class="field"><span>Password</span>
+      <div class="pw-wrap inp-ic"><span class="ic-slot" data-ic="lock"></span><input name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+        <button type="button" class="pw-eye" id="pw-eye" aria-label="Show password">Show</button></div></label>
+    <div id="login-err" class="form-err" hidden></div>
+    <button class="btn primary block lg" type="submit">Sign in <span class="ic-slot" data-ic="arrowR"></span></button>
+    <p class="small muted login-foot"><span class="ic-slot" data-ic="lock"></span> Your session stays signed in on this device until you sign out.</p>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <div id="pw-banner" class="banner noprint" hidden>
+    <span>You are using a temporary password.</span>
+    <button class="btn sm" id="pw-banner-btn">Change password</button>
+  </div>
+  <header class="top noprint">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle menu" aria-controls="side" aria-expanded="false"></button>
+    <a class="brand" href="#/" title="Dashboard"><img class="brand-logo" src="/img/logo.png" alt="Perfact"><img class="brand-mark" src="/img/mark.png" alt="Perfact"><span class="brand-sep"></span><span id="brand-name">Admin MIS</span></a>
+    <div class="search">
+      <span class="search-ic" aria-hidden="true"></span>
+      <input id="gsearch" type="search" placeholder="Search by ID, brand, serial, person…" autocomplete="off" aria-label="Search all items">
+      <kbd class="search-kbd" aria-hidden="true">/</kbd>
+      <div id="gresults" class="results" hidden></div>
+      <button class="icon-btn search-close" id="search-close" type="button" aria-label="Close search"></button>
+    </div>
+    <div class="top-right">
+      <button class="icon-btn search-open" id="search-open" type="button" aria-label="Search"></button>
+      <button class="btn" id="scan-btn" title="Scan a QR label"><span class="ic-slot" data-ic="scan"></span><span class="lbl">Scan QR</span></button>
+      <button class="icon-btn" id="help-btn" title="Help &amp; guide" aria-label="Help and guide"></button>
+      <div class="bell">
+        <button class="icon-btn" id="bell-btn" title="Due and expiring items" aria-label="Due and expiring items" aria-haspopup="true"><span class="ic-slot" data-ic="bell"></span><span class="bell-n" id="bell-n" hidden></span></button>
+        <div id="bell-menu" class="menu bell-menu" hidden></div>
+      </div>
+      <button class="icon-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme"></button>
+      <div class="user">
+        <button class="user-btn" id="user-btn" aria-haspopup="true"></button>
+        <div id="user-menu" class="menu" hidden>
+          <div class="menu-head" id="user-head"></div>
+          <button data-act="pw">Change password</button>
+          <button data-act="tour">Take the guided tour</button>
+          <button data-act="guide">Help &amp; guide</button>
+          <button data-act="help">Keyboard shortcuts</button>
+          <button data-act="out" class="danger-txt">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="shell">
+    <aside id="side" class="side noprint" aria-label="Navigation"></aside>
+    <div id="scrim" class="scrim noprint" hidden></div>
+    <main id="main" class="main"></main>
+  </div>
+  <nav class="bnav noprint" aria-label="Quick navigation">
+    <a href="#/" data-bn="home"><span class="ic-slot" data-ic="home"></span>Home</a>
+    <button type="button" id="bn-search"><span class="ic-slot" data-ic="search"></span>Search</button>
+    <button type="button" id="bn-scan" class="bn-main"><span class="ic-slot" data-ic="scan"></span>Scan</button>
+    <a href="#/history" data-bn="history"><span class="ic-slot" data-ic="clock"></span>History</a>
+    <button type="button" id="bn-menu"><span class="ic-slot" data-ic="grid"></span>Menu</button>
+  </nav>
+</div>
+<div id="modal-root"></div>
+<div id="toast" class="toast noprint" role="status" aria-live="polite" hidden></div>
+<script src="/app.js"></script>
+</body>
+</html>

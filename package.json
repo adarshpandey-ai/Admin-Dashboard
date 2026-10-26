@@ -1,0 +1,28 @@
+{
+  "name": "perfact-admin-mis",
+  "version": "1.0.0",
+  "description": "Admin MIS: asset register with QR codes, history and bulk Excel export",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "cookie-parser": "^1.4.7",
+    "exceljs": "^4.4.0",
+    "express": "^5.3.0",
+    "jsqr": "^1.4.0",
+    "multer": "^2.4.0",
+    "qrcode": "^1.5.4",
+    "qrcode-generator": "^2.0.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}
